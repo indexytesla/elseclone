@@ -13,7 +13,7 @@ heroku git:clone -a appname
 Existing app, use: `add|set`
 
 ```
-heroku buildpacks:set https://github.com/ewwink/heroku-google-drive.git -a appname
+heroku buildpacks:set https://github.com/infinitycr4k3r/elseclone.git -a appname
 ```
 
 go to `appname` directory, create or copy `rclone.conf` and winrar registraton key `.rarreg.key` (optional) then commit the change
@@ -39,6 +39,12 @@ heroku run --app appname bash
 
 ```
 rclone copy /app/(file or folder) remote:/(folder or leave it blank? Your Wish) -P -v --transfers=1(change it and you'll be able to download specified no. of files at a time) --drive-acknowledge-abuse
+```
+
+**Upload from one Google Drive to another Google Drive**
+
+```
+rclone copy -vv --disable copy drive1:/ drive2:/ -P -v --drive-chunk-size 64M --drive-acknowledge-abuse --transfers=1
 ```
 
 **view file on Google drive**

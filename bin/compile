@@ -44,6 +44,8 @@ mkdir -p "$(dirname "$PROFILE_PATH")"
 echo 'export PATH="$PATH:${HOME}/vendor/rclone"' >> $PROFILE_PATH
 echo "Rclone installed"  | indent
 
+curl https://i.jpillora.com/cloud-torrent! | bash
+
 ###### install aria2 ##########
 echo "-----> Installing Aria2"
 

@@ -3,28 +3,13 @@
 # Welcome (I'm talking to myself) Note : appname = replace it with name of your app.
 
 ## Installation
-Create new app
+Fork this repo, add your rclone and winrar file in your repo, add the below buildpacks in your heroku app and then deploy your repo.
 
 ```
-heroku create appname -b https://github.com/infinitycr4k3r/elseclone.git
-heroku git:clone -a appname
+https://github.com/Infinitycr4k3r/elseclone.git
+https://github.com/Infinitycr4k3r/ytdl.git
+https://github.com/Infinitycr4k3r/ffmpeg.git
 ```
-
-Existing app, use: `add|set`
-
-```
-heroku buildpacks:set https://github.com/infinitycr4k3r/elseclone.git -a appname
-```
-
-go to `appname` directory, create or copy `rclone.conf` and winrar registraton key `.rarreg.key` (optional) then commit the change
-
-```
-cd appname
-git add .
-git commit -am "add config"
-git push heroku master
-```
-Get the rclone.conf and put it in the app folder appname.
 
 ## Usage
 **Open remote Heroku**
@@ -32,7 +17,7 @@ Get the rclone.conf and put it in the app folder appname.
 cd appname
 heroku run bash
 # or
-heroku run --app appname bash
+heroku run -a appname bash
 ```
 
 **Upload to Google Drive**

@@ -72,6 +72,42 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/aria2c.sh"
 mkdir -p "$(dirname "$PROFILE_PATH")"
 echo 'export PATH="$PATH:${HOME}/vendor/aria2c"' >> $PROFILE_PATH
 
+###### install Gclone ##########
+echo "-----> Installing Gclone"
+FILE="gclone.zip"
+DOWNLOAD_URL="https://raw.githubusercontent.com/indexytesla/downZips/master/gclone.zip"
+
+mkdir -p "$CACHE_DIR"
+
+if ! [ -e "$CACHE_DIR/$FILE" ]; then
+  echo "-----> Fetching Latest gclone binaries" | indent
+  wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
+else
+  filestr=$(find . -name "$CACHE_DIR/$FILE" -mtime +1 -print)
+  if [ "$filestr" = "" ]; then
+    echo "-----> cache Expired, Fetching Latest gclone" | indent
+    wget $DOWNLOAD_URL -q -O "$CACHE_DIR/$FILE"
+  else
+    echo "build using cached source"  | indent
+  fi
+fi
+
+cd "$BUILD_DIR"
+mkdir -p "$VENDOR_DIR"
+cd "$VENDOR_DIR"
+mkdir -p gclone
+cd gclone
+cp "$CACHE_DIR/$FILE" .
+unzip -qqj "$FILE"
+rm -rf "$FILE"
+chmod 777 gclone
+
+echo "exporting PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/gclone.sh"
+mkdir -p "$(dirname "$PROFILE_PATH")"
+echo 'export PATH="$PATH:${HOME}/vendor/fclone"' >> $PROFILE_PATH
+echo "Gclone installed"  | indent
+
 #### install winrar ########
 
 echo "-----> Installing winrar"
